@@ -34,8 +34,10 @@ def solveSudoku(grid, row, col):
     if grid[row][col] > 0:
         return solveSudoku(grid, row, col + 1)
     for num in range(1, N + 1, 1):
-        if solveSudoku(grid, row, col + 1):
-            return True 
+        if isSafe(grid, row, col, num):
+            grid[row][col] = num
+            if solveSudoku(grid, row, col + 1):
+                return True 
         
         grid[row][col] = 0
     return False
